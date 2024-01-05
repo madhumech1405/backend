@@ -1,12 +1,49 @@
-const http =require('http')
-const hostname='127.0.0.1';
-const port =3001;
-const server=http.createServer((req,res)=>{
-    res.statusCode=200;
-    res.setHeader("content",'text/plain');
-    res.end('welcome creater\n');
-})
-server.listen(port,hostname,()=>{
-    console.log(`server ruuning at http://${hostname}:${port} `)
+const express = require('express')
+const app = express()
+const fs = require('fs')
+app.use(express.json())
+
+let ts = Date.now();
+
+let date_ob = new Date(ts);
+let date = date_ob.getDate();
+let month = date_ob.getMonth() + 1;
+let year = date_ob.getFullYear();
+
+
+console.log(year + "-" + month + "-" + date);
+const timestamp = year + "-" + month + "-" + date
+fs.writeFile('date-time.txt',`${timestamp}`,(err) => {
+    if(err) throw err
+    console.log('File Created!!!')
 
 })
+app.get('/',function(req,res){
+    res.json(timestamp)
+})
+
+app.listen(3001)const express = require('express')
+const app = express()
+const fs = require('fs')
+app.use(express.json())
+
+let ts = Date.now();
+
+let date_ob = new Date(ts);
+let date = date_ob.getDate();
+let month = date_ob.getMonth() + 1;
+let year = date_ob.getFullYear();
+
+
+console.log(year + "-" + month + "-" + date);
+const timestamp = year + "-" + month + "-" + date
+fs.writeFile('date-time.txt',`${timestamp}`,(err) => {
+    if(err) throw err
+    console.log('File Created!!!')
+
+})
+app.get('/',function(req,res){
+    res.json(timestamp)
+})
+
+app.listen(3001)
